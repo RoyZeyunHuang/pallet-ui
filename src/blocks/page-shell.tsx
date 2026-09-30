@@ -95,10 +95,13 @@ export function PageShell({
   return (
     <SidebarProvider>
       <Sidebar collapsible="icon">
-        <SidebarHeader className="h-14 justify-center border-b px-3">
-          <div className="flex items-center gap-2 overflow-hidden">
+        {/* 折叠后侧栏只有 3rem 宽：图标用 size-8、左右留默认 p-2，和下面的导航按钮同宽、同一条中线。
+            外层不要 overflow-hidden、也不要加大左右内边距，否则折叠时图标右边会被切掉；
+            展开 / 折叠过渡时文字靠自身 truncate 和折叠隐藏收住。 */}
+        <SidebarHeader className="h-14 justify-center border-b">
+          <div className="flex min-w-0 items-center gap-2">
             {AppIcon && (
-              <span className="flex size-7 shrink-0 items-center justify-center rounded-md bg-primary text-primary-foreground">
+              <span className="flex size-8 shrink-0 items-center justify-center rounded-md bg-primary text-primary-foreground">
                 <AppIcon className="size-4" />
               </span>
             )}
